@@ -4,11 +4,10 @@ FROM rocker/r-base
 RUN R -e "install.packages(c('shiny', 'rmarkdown'), repos='https://cloud.r-project.org/')"
 
 # copy the app to the image
-RUN mkdir /root/exponentialscoring
-COPY exponentialscoring /root/exponentialscoring
+COPY exponentialscoring /app/exponentialscoring
 
 COPY Rprofile.site /usr/lib/R/etc/
 
 EXPOSE 3838
 
-CMD ["R", "-e", "shiny::runApp('/root/exponentialscoring')"]
+CMD ["R", "-e", "shiny::runApp('/app/exponentialscoring')"]
